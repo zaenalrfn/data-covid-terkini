@@ -1,0 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;500;700&display=swap');
+
+:root {
+	--yellow: rgb(255, 205, 86);
+	--red: rgb(255, 99, 132);
+	--orange: #f5a623;
+	--green: rgb(54, 162, 235);
+	--background: #3AB4F2;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	font-family: 'Albert Sans', sans-serif;
+}
+
+main {
+	width: 100%;
+	height: auto;
+	padding: 20px 0;
+	background: #6a3093;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #a044ff, #6a3093);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #a044ff, #6a3093); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+
+}
+main .boxCovid {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(200px, 1fr));
+	grid-gap: 10px 10px;
+	margin: 0 15px;
+	padding-top: 10px;
+
+}
+
+.boxCovid .item {
+	/* From https://css.glass */
+	background: rgba(255, 255, 255, 0.36);
+	border-radius: 16px;
+	box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+	backdrop-filter: blur(8.6px);
+	-webkit-backdrop-filter: blur(8px);
+	border: 1px solid rgba(255, 255, 255, 0.32);
+	padding: 40px;
+	text-align: center;
+}
+.item h1 {
+	font-size: 50px;
+	letter-spacing: 0.1em;
+	margin-bottom: 10px;
+	font-weight: 700;
+	-webkit-text-stroke-width: 0.5px;
+	-webkit-text-stroke-color: #fff;
+}
+.item p {
+	color: #fff;
+	font-weight: 400;
+}
+.item #terkonfirmasi {
+	color: var(--yellow);
+}
+.item #dalamPerawatan {
+	color: var(--orange);
+}
+.item #sembuh {
+	color: var(--green);
+}
+.item #meninggal {
+	color: var(--red);
+}
+.chart {
+	width: 500px;
+	height: 500px;
+	display: block;
+	margin: 10px auto;
+	background: rgba(255, 255, 255, 0.36);
+	border-radius: 16px;
+	box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+	backdrop-filter: blur(8.6px);
+	-webkit-backdrop-filter: blur(8px);
+	border: 1px solid rgba(255, 255, 255, 0.32);
+}
+#myChart {
+	color: #fff;
+}
+@media screen and (max-width: 868px) {
+	.item h1 {
+		font-size: 45px;
+	}
+}
+@media screen and (max-width: 768px) {
+	.item h1 {
+		font-size: 35px;
+	}
+}
+@media screen and (max-width: 580px) {
+	main .boxCovid {
+		grid-template-columns: repeat(1, 1fr);
+	}
+	.chart {
+		width: auto;
+		margin: 10px 15px;
+	}
+}
