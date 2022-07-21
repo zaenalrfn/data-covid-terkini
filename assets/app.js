@@ -1,3 +1,4 @@
+			const chart = document.getElementById('myChart');
 const terkonfirmasi = document.getElementById('terkonfirmasi'),
 	  dalamPerawatan = document.getElementById('dalamPerawatan'),
 	  sembuh = document.getElementById('sembuh'),
@@ -36,8 +37,7 @@ dataCovid()
 
 
 const ambil = (d) => {
-	const indonesia = d
-	console.log(indonesia)
+	const indonesia = d;
 	dataCovidWorld(d)
 }
 
@@ -60,13 +60,12 @@ const requestCovid = async () => {
 		searchForm.addEventListener('submit', function(e) {
 			e.preventDefault();
 			const selected = searchOption.options[searchOption.selectedIndex]
-			getNameCountry(selected.value)
+			getNameCountry(selected.value);
 		})
 	}catch(err) {
 		console.log(err)
 	}
 }
-
 requestCovid()
 
 
@@ -82,7 +81,7 @@ const fetchRequestCovid = async (dataRequest) => {
 	try {
 		let response = await fetch(d, options);
 		response = await response.json();
-		ambilCounntry(response)
+		ambilCounntry(response);
 	}catch(err) {
 		console.log(err)
 	}
@@ -140,6 +139,8 @@ function dataCovidWorld(d) {
 		data: data,
 	}
 	const chart = document.getElementById('myChart')
-	const myChart = new Chart(chart, viewChart)
+	const myChart = new Chart(chart, viewChart);
+	
 }
 
+ 
