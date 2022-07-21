@@ -37,10 +37,38 @@ main .boxCovid {
 
 }
 
+.search {
+	display: flex;
+	justify-content: center;
+}
+form {
+	width: 500px;
+}
+form select {
+	width: 80%;
+	padding: 10px;
+	background: rgba(255, 255, 255, 0.36);
+	border-radius: 6px;
+	box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+	backdrop-filter: blur(8.6px);
+	-webkit-backdrop-filter: blur(8px);
+	border: 1px solid rgba(255, 255, 255, 0.32);
+	font-size: 20px;
+}
+form select:focus {
+	outline: none;
+}
+form input[type=submit] {
+	padding: 10px;
+	border: none;
+	border-radius: 6px;
+	font-size: 20px;
+	cursor: pointer;
+}
 .boxCovid .item {
 	/* From https://css.glass */
 	background: rgba(255, 255, 255, 0.36);
-	border-radius: 16px;
+	border-radius: 6px;
 	box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 	backdrop-filter: blur(8.6px);
 	-webkit-backdrop-filter: blur(8px);

@@ -1,7 +1,10 @@
 const terkonfirmasi = document.getElementById('terkonfirmasi'),
 	  dalamPerawatan = document.getElementById('dalamPerawatan'),
 	  sembuh = document.getElementById('sembuh'),
-	  meninggal = document.getElementById('meninggal');
+	  meninggal = document.getElementById('meninggal'),
+	  searchForm = document.getElementById('searchForm'),
+	  searchOption = document.getElementById('searchOption'),
+	  title = document.getElementById('title');
 
 const options = {
 	method: 'GET',
@@ -31,9 +34,68 @@ const dataCovid = async () => {
 }
 dataCovid()
 
+
 const ambil = (d) => {
-	const formatNumber = /(\d)(?=(\d{3})+(?!\d))/g;
 	const indonesia = d
+	console.log(indonesia)
+	dataCovidWorld(d)
+}
+
+
+
+
+const requestCovid = async () => {
+	try {
+		let response = await fetch('https://covid-193.p.rapidapi.com/countries', options)
+		response = await response.json()
+		const nameCountry = response.response
+		for(nc of nameCountry) {
+			const optionList = document.createElement('option');
+			optionList.setAttribute('value', nc)
+			optionList.innerText = '';
+			optionList.innerText = nc;
+			searchOption.append(optionList)
+		}
+
+		searchForm.addEventListener('submit', function(e) {
+			e.preventDefault();
+			const selected = searchOption.options[searchOption.selectedIndex]
+			getNameCountry(selected.value)
+		})
+	}catch(err) {
+		console.log(err)
+	}
+}
+
+requestCovid()
+
+
+const getNameCountry = (d) => {
+	let nameCountry = d;
+	let url = `https://covid-193.p.rapidapi.com/statistics?country=${nameCountry}`
+	fetchRequestCovid(url)
+}
+
+
+const fetchRequestCovid = async (dataRequest) => {
+	const d = dataRequest;
+	try {
+		let response = await fetch(d, options);
+		response = await response.json();
+		ambilCounntry(response)
+	}catch(err) {
+		console.log(err)
+	}
+}
+
+
+const ambilCounntry = (d) => {
+	const nameCountry = d
+	dataCovidWorld(d)
+}
+
+function dataCovidWorld(d) {
+	const formatNumber = /(\d)(?=(\d{3})+(?!\d))/g;
 	const { active, recovered, total } = d.response[0].cases,
 		new_cases = d.response[0].cases.new,
 	 	total_deaths = d.response[0].deaths.total,
@@ -41,23 +103,19 @@ const ambil = (d) => {
      	day = d.response[0].day,
      	new_deaths = d.response[0].deaths.new,
      	population = d.response[0].population,
-     	tests = d.response[0].tests.total
+     	tests = d.response[0].tests.total,
+     	countries = d.parameters.country
 
     terkonfirmasi.innerText = total.toString().replace(formatNumber, '$1.');
     dalamPerawatan.innerText = active.toString().replace(formatNumber, '$1.');
     sembuh.innerText = recovered.toString().replace(formatNumber, '$1.');
     meninggal.innerText = total_deaths.toString().replace(formatNumber, '$1.');
-	console.log(indonesia) 
+    title.innerText = countries;
 
-	const bagi = 100
-	let persenTerkonfirmasi = parseInt(total) / parseInt(tests) * 100
-		persenSembuh = parseInt(recovered) / parseInt(tests) * 100
+	let persenTerkonfirmasi = parseInt(total) / parseInt(tests) * 100,
+		persenSembuh = parseInt(recovered) / parseInt(tests) * 100,
 		persenMeninggal =  parseInt(total_deaths) / parseInt(total) * 100
 
-
-	console.log(persenTerkonfirmasi)
-	console.log(persenSembuh)
-	console.log(persenMeninggal)
 	const data = {
 		labels: [
 			`terkonfirmasi : ${Math.floor(persenTerkonfirmasi)}%`,
@@ -84,9 +142,4 @@ const ambil = (d) => {
 	const chart = document.getElementById('myChart')
 	const myChart = new Chart(chart, viewChart)
 }
-
-
-
-// chart
-
 
