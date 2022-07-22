@@ -1,11 +1,30 @@
-			const chart = document.getElementById('myChart');
-const terkonfirmasi = document.getElementById('terkonfirmasi'),
+const chart = document.getElementById('myChart'),
+	  terkonfirmasi = document.getElementById('terkonfirmasi'),
 	  dalamPerawatan = document.getElementById('dalamPerawatan'),
 	  sembuh = document.getElementById('sembuh'),
 	  meninggal = document.getElementById('meninggal'),
 	  searchForm = document.getElementById('searchForm'),
 	  searchOption = document.getElementById('searchOption'),
-	  title = document.getElementById('title');
+	  title = document.getElementById('title'),
+	  counterr = document.getElementById('counter')
+
+
+const myChart = new Chart(chart, {
+	type: 'doughnut',
+	data: {
+		labels: [],
+		datasets: [{
+			label: 'yes',
+			data: [],
+			backgroundColor: [
+			'rgb(255, 99, 132)',
+			'rgb(54, 162, 235)',
+			'rgb(255, 205, 86)'
+			],
+			hoverOffset: 4
+		}]
+	}
+})
 
 const options = {
 	method: 'GET',
@@ -40,8 +59,6 @@ const ambil = (d) => {
 	const indonesia = d;
 	dataCovidWorld(d)
 }
-
-
 
 
 const requestCovid = async () => {
@@ -87,9 +104,9 @@ const fetchRequestCovid = async (dataRequest) => {
 	}
 }
 
-
 const ambilCounntry = (d) => {
 	const nameCountry = d
+	console.log(nameCountry)
 	dataCovidWorld(d)
 }
 
@@ -111,36 +128,19 @@ function dataCovidWorld(d) {
     meninggal.innerText = total_deaths.toString().replace(formatNumber, '$1.');
     title.innerText = countries;
 
-	let persenTerkonfirmasi = parseInt(total) / parseInt(tests) * 100,
-		persenSembuh = parseInt(recovered) / parseInt(tests) * 100,
-		persenMeninggal =  parseInt(total_deaths) / parseInt(total) * 100
+    let persenTerkonfirmasi = parseInt(total) / parseInt(tests) * 100,
+    	persenSembuh = parseInt(recovered) / parseInt(tests) * 100,
+    	persenMeninggal =  parseInt(total_deaths) / parseInt(total) * 100
 
-	const data = {
-		labels: [
-			`terkonfirmasi : ${Math.floor(persenTerkonfirmasi)}%`,
-			`Sembuh : ${Math.floor(persenSembuh)}%`,
-			`Meninggal : ${Math.floor(persenMeninggal)}%`,
-		],
-		datasets: [{
-			label: 'My First Dataset',
-			data: [persenTerkonfirmasi, persenSembuh, persenMeninggal],
-			backgroundColor: [
-			'rgb(255, 99, 132)',
-			'rgb(54, 162, 235)',
-			'rgb(255, 205, 86)'
-			],
-			hoverOffset: 4
-		}]
-	}
-
-
-	const viewChart = {
-		type: 'doughnut',
-		data: data,
-	}
-	const chart = document.getElementById('myChart')
-	const myChart = new Chart(chart, viewChart);
+    const newPersenT = [persenTerkonfirmasi, persenSembuh, persenMeninggal]
+    myChart.data.datasets[0].data = newPersenT
+    myChart.data.labels = [`terkonfirmasi : ${Math.floor(persenTerkonfirmasi)}%`, `sembuh : ${Math.floor(persenSembuh)}%`, `meninggal : ${Math.floor(persenMeninggal)}%`]
+    myChart.update()
 	
 }
+
+
+
+
 
  
