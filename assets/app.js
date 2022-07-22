@@ -6,7 +6,7 @@ const chart = document.getElementById('myChart'),
 	  searchForm = document.getElementById('searchForm'),
 	  searchOption = document.getElementById('searchOption'),
 	  title = document.getElementById('title'),
-	  counterr = document.getElementById('counter')
+	  counterr = document.querySelector('counter')
 
 
 const myChart = new Chart(chart, {
@@ -45,9 +45,7 @@ const dataCovid = async () => {
 	try {
 		let getCovid = await fetch('https://covid-193.p.rapidapi.com/statistics?country=indonesia', options);
 		getCovid = await getCovid.json();
-		setTimeout(function() {
-			ambil(getCovid);
-		}, 200)
+		ambil(getCovid);
 	} catch(err) {
 		console.log(err)
 	}
@@ -106,11 +104,12 @@ const fetchRequestCovid = async (dataRequest) => {
 
 const ambilCounntry = (d) => {
 	const nameCountry = d
-	console.log(nameCountry)
 	dataCovidWorld(d)
+
 }
 
 function dataCovidWorld(d) {
+
 	const formatNumber = /(\d)(?=(\d{3})+(?!\d))/g;
 	const { active, recovered, total } = d.response[0].cases,
 		new_cases = d.response[0].cases.new,
@@ -121,11 +120,11 @@ function dataCovidWorld(d) {
      	population = d.response[0].population,
      	tests = d.response[0].tests.total,
      	countries = d.parameters.country
-
-    terkonfirmasi.innerText = total.toString().replace(formatNumber, '$1.');
-    dalamPerawatan.innerText = active.toString().replace(formatNumber, '$1.');
-    sembuh.innerText = recovered.toString().replace(formatNumber, '$1.');
-    meninggal.innerText = total_deaths.toString().replace(formatNumber, '$1.');
+     	
+    terkonfirmasi.innerText = total.toString().replace(formatNumber, '$1,');
+    dalamPerawatan.innerText = active.toString().replace(formatNumber, '$1,');
+    sembuh.innerText = recovered.toString().replace(formatNumber, '$1,');
+    meninggal.innerText = total_deaths.toString().replace(formatNumber, '$1,');
     title.innerText = countries;
 
     let persenTerkonfirmasi = parseInt(total) / parseInt(tests) * 100,
@@ -136,6 +135,13 @@ function dataCovidWorld(d) {
     myChart.data.datasets[0].data = newPersenT
     myChart.data.labels = [`terkonfirmasi : ${Math.floor(persenTerkonfirmasi)}%`, `sembuh : ${Math.floor(persenSembuh)}%`, `meninggal : ${Math.floor(persenMeninggal)}%`]
     myChart.update()
+
+    jQuery(document).ready(function($) {
+            $('.counter').counterUp({
+                delay: 10,
+                time: 1000
+            });
+        });
 	
 }
 

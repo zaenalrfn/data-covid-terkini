@@ -5,11 +5,11 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>data covid indonesia</title>
 	<link rel="stylesheet" type="text/css" href="./assets/style.css">
+	<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
 </head>
 <body>
 	<main>
 		<h2 style="color: #fff; text-align:center; padding: 30px 0;">data covid 19 di dunia</h2>
-		<h3 id="counter"></h3>
 		<div class="main">
 			<div class="search">
 				<form id="searchForm">
@@ -22,19 +22,19 @@
 			<h1 id="title" style="color: #fff; text-align: center; padding: 20px 0;"></h1>
 			<div class="boxCovid">
 				<div class="item" >
-					<h1 id="terkonfirmasi"></h1>
+					<h1 id="terkonfirmasi" class="counter"></h1>
 					<p>Terkonfirmasi</p>
 				</div>
 				<div class="item" >
-					<h1 id="dalamPerawatan"></h1>
+					<h1 id="dalamPerawatan" class="counter"></h1>
 					<p>Dalam Perawatan</p>
 				</div>
 				<div class="item" >
-					<h1 id="sembuh"></h1>
+					<h1 id="sembuh" class="counter"></h1>
 					<p>Sembuh</p>
 				</div>
 				<div class="item" >
-					<h1 id="meninggal"></h1>
+					<h1 id="meninggal" class="counter"></h1>
 					<p>Meninggal</p>
 				</div>
 			</div>
@@ -44,8 +44,18 @@
 		</div>
 	</main>
 
-
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
+	<script src="./assets/jquery.counterup.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js" integrity="sha512-sW/w8s4RWTdFFSduOTGtk4isV1+190E/GghVffMA9XczdJ2MDzSzLEubKAs5h0wzgSJOQTRYyaz73L3d6RtJSg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 	<script src="./assets/app.js"></script>
+
+	<script type="text/javascript">
+	// jQuery(document).ready(function($) {
+ //            $('.counter').counterUp({
+ //                delay: 5,
+ //                time: 100
+ //            });
+ //        });
+	</script>
 </body>
 </html>
