@@ -6,9 +6,10 @@ const chart = document.getElementById('myChart'),
 	  searchForm = document.getElementById('searchForm'),
 	  searchOption = document.getElementById('searchOption'),
 	  title = document.getElementById('title'),
-	  counterr = document.querySelector('counter')
+	  counterr = document.querySelector('counter');
 
 
+// console.log(loader)
 const myChart = new Chart(chart, {
 	type: 'doughnut',
 	data: {
@@ -54,8 +55,17 @@ dataCovid()
 
 
 const ambil = (d) => {
-	const indonesia = d;
-	dataCovidWorld(d)
+	const dataAmbil = []
+	dataAmbil.push(d)
+	if (dataAmbil.length > -1) {
+		let loader = document.querySelectorAll('.loaderAnim');
+		loader.forEach((itemLoader) => {
+			itemLoader.style.display = "none"
+		})
+		dataCovidWorld(dataAmbil[0])
+	}else {
+		alert("gagal")
+	}
 }
 
 

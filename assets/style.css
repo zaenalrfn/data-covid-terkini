@@ -17,6 +17,37 @@
 body {
 	font-family: 'Albert Sans', sans-serif;
 }
+.loaderAnim {
+	display: flex;
+	gap: 5px;
+	margin-bottom: 10px;
+}
+.loaderAnim div {
+	width: 55px;
+	height: 8px;
+	animation: animL 900ms ease-in infinite;
+}
+.one div {
+	background: var(--yellow);
+}
+.two div {
+	background: var(--orange);
+}
+.three div {
+	background: var(--green);
+}
+.four div {
+	background: var(--red);
+}
+
+@keyframes animL {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
 
 main {
 	width: 100%;
@@ -73,6 +104,8 @@ form input[type=submit] {
 	border: 1px solid rgba(255, 255, 255, 0.32);
 	padding: 40px;
 	text-align: center;
+	display: flex;
+	justify-content: center;
 }
 .item h1 {
 	font-size: 50px;
