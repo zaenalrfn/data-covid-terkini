@@ -129,13 +129,16 @@ function dataCovidWorld(d) {
      	new_deaths = d.response[0].deaths.new,
      	population = d.response[0].population,
      	tests = d.response[0].tests.total,
-     	countries = d.parameters.country
+     	countries = d.parameters.country,
+     	countriesClear = countries.replace(/-/gi, ' ')
      	
     terkonfirmasi.innerText = total.toString().replace(formatNumber, '$1,');
     dalamPerawatan.innerText = active.toString().replace(formatNumber, '$1,');
     sembuh.innerText = recovered.toString().replace(formatNumber, '$1,');
     meninggal.innerText = total_deaths.toString().replace(formatNumber, '$1,');
-    title.innerText = countries;
+    title.innerText = countriesClear;
+
+    console.log(title.innerText)
 
     let persenTerkonfirmasi = parseInt(total) / parseInt(tests) * 100,
     	persenSembuh = parseInt(recovered) / parseInt(tests) * 100,
